@@ -1,0 +1,27 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+    <title>BoxOffice | Payment</title>
+{% endblock %}
+
+{% block content %}
+
+	<h1>Booking Details</h1>
+	<div class="booking">
+		<form method="post" action="{% url 'payment_confirmation' %}">
+			{% csrf_token %}
+			<input type="hidden" id="show_id" name="show_id" value="{{ show.id }}">
+			Movie:<input id="movie" name="movie" value="{{ show.movie }}" readonly>
+			Theatre:<input id="theatre" name="theatre" value="{{ show.theatre }}"  readonly>
+			Screen No:<input id="screen" name="screen" value="{{ show.screen }}"  readonly>
+			Showtime:<input id="showtime" name="showtime" value="{{ show.time }}"  readonly>
+			Date:<input id="date" name="date" value="{{ show.date }}"  readonly>
+			Seats:<input id="selected_seat" name="selected_seat" value="{{ seats }}"  readonly>
+			Seat Type:<input id="seat_type" name="seat_type" value="{{ seat_type }}"  readonly>
+			Payable Amaount:<input id="amount" name="amount" value="{{ ticket_price }}"  readonly>
+			{{ form.as_p }}
+			<button type="submit">Pay</button>
+		</form>
+	</div>
+
+{% endblock %}

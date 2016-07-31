@@ -1,0 +1,35 @@
+div.Platinum, div.Gold, div.Silver{
+	height: 2em;
+	width: 2em;
+	background-color: grey;
+	border: 1px solid black;
+	margin: 2px;
+}
+
+div.seatDiv{
+	width: 80%;
+}
+div.seatArray{
+	width: 80%;
+	float: left;
+}
+div.seatForm{
+	width: 20%;
+	float: left;
+}
+
+div.selectable{
+	background-color: green!important;
+}
+
+div.selected{
+	background-color: blue!important;
+}
+
+/*START: override bootsrtap styles*/
+
+.navbar-static-top{
+	z-index: 99!important;
+}
+
+/*END: override bootsrtap styles*/

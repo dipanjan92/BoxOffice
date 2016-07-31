@@ -1,0 +1,23 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+    <title>BoxOffice | Movie Details</title>
+{% endblock %}
+
+{% block content %}
+
+<p>{{ movie_info }}</p>
+<div>
+	<ul>
+		{% for show in show_list %}
+			<li>
+				<div>
+					<label>{{ show.theatre }}</label>
+					<div><a href="{% url 'reserve_seat' show.id %}">{{ show }}</a></div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

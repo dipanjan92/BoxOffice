@@ -1,0 +1,26 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+    <title>BoxOffice | Reserve Seats</title>
+{% endblock %}
+
+{% block content %}
+
+	<h1>Show Details</h1>
+	<h2>{{ show_info }}</h2>
+	<div class="seatDiv">
+		<div class="seatArray">
+		</div>
+		<div class="seatForm">
+			<form method="post" action="{% url 'payment_gateway' %}">
+				{% csrf_token %}
+				{{ form.as_p }}
+				Seats: <input name="selected_seat" id="selected_seat" type="text" readonly />
+				<span>Total number of seats: </span><span id="no_of_seats">0</span>
+				<input type="hidden" name="show_id" id="show_id" value="{{ show_info.id }}" readonly />
+				<button type="submit">Confirm</button>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

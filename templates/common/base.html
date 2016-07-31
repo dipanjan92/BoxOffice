@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% load static %} 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    {% block title %}
+    {% endblock %}
+    <script src="{% static "js/common.js" %}"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">BoxOffice</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/movie/">Movies</a></li>
+            <li><a href="/theatre/">Theatres</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li class="active"><a href="/accounts/logout/">Sign Out</a></li>
+            {% else %}
+            <li class="active"><a href="#" id="signIn">Sign In</a></li>
+            {% endif %}
+            <li class=""><a href="#" id="selectCity">Select City</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="loginModal">
+        {% block login_holder %}
+        <form id="login_form" method="post" action="/accounts/login/">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />
+            <div class="form-group">
+                <label>Username: </label>
+                <input type="text" class="form-control"  name="username" value="" size="50" >
+            </div>
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="password" class="form-control"  name="password" value="" size="50" >
+            </div>
+            <div class="pull-right">
+                <a role="button" href="/accounts/register/" class="btn btn-default">Register</a>
+                <input class="btn btn-primary" type="submit" value="Sign In" />
+            </div>
+        </form>
+        {% endblock %}
+    </div>
+
+    <div id="cityModal" class="btn-group">
+        <a class="btn btn-default" href="#" role="button">Bangalore</a>
+        <a class="btn btn-default" href="#" role="button">Chennai</a>
+        <a class="btn btn-default" href="#" role="button">Delhi</a>
+        <a class="btn btn-default" href="#" role="button">Kolkata</a>
+        <a class="btn btn-default" href="#" role="button">Mumbai</a>
+    </div>
+
+<div id="content" class="container-fluid">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
