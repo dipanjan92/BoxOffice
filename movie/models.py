@@ -26,7 +26,7 @@ class Movie(models.Model):
     run_length = models.IntegerField(help_text="Enter run length in minutes")
     certificate = models.CharField(max_length=2, choices=rating_choice)
     trailer = models.URLField(blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='media')
 
     def __str__(self):
         return self.name

@@ -51,6 +51,32 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+
+    <div class="jumbotron">
+      <div class="text-center">
+        <h2>Now Showing</h2>
+      </div>
+      <div class="row">
+      {% for movie in movie_list %}
+        <div class="col-sm-4">
+          <div class="thumbnail">
+            <img src="{{ MEDIA_URL }}/media/{{ movie.image }}" alt="{{ movie.name }}">
+            <div class="caption">
+              <h3>{{ movie.name }}</h3>
+              <p>{{ movie.cast }}</p>
+              <p>{{ movie.language }} | {{ movie.certificate }}</p>
+              <p><a href="#" class="btn btn-default" role="button">Watch Trailer</a> <a href="#" class="btn btn-primary" role="button">Book Now</a></p>
+            </div>
+          </div>
+        </div>
+      {% if forloop.counter|divisibleby:3 %}
+      </div>
+      {% if forloop.counter != movie_list|length %}
+      <div class="row">
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </div>
     <script type="text/javascript">
     	$('.carousel').carousel({
   			interval: 5000

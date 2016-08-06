@@ -32,4 +32,21 @@ div.selected{
 	z-index: 99!important;
 }
 
+.ui-widget-overlay{
+	background-color: black!important;
+	opacity:0.5!important;
+}
+
+.thumbnail img { 
+	min-height:250px; 
+	height:250px!important;
+	width:350px!important; 
+}
+
 /*END: override bootsrtap styles*/
+
+.forms{
+	background-color: #f2f2f2;
+	padding:10px;
+	margin:5px;
+}
