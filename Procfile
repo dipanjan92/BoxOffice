@@ -1,0 +1,1 @@
+web: gunicorn boxoffice.wsgi --log-file -
