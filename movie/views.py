@@ -26,8 +26,20 @@ def movie_list(request):
 def movie_details(request, movie_id):
 	try:
 		movie_info = Movie.objects.get(pk=movie_id)
-		show_list = Show.objects.filter(movie=movie_id, 
-			date=datetime.date.today())
+		shows = Show.objects.filter(movie=movie_id, 
+			date=datetime.date.today()).order_by('theatre')
+		show_list = []
+		show_by_theatre = []
+		theatre = shows[0].theatre
+		for i in range(0, len(shows)):
+			if theatre != shows[i].theatre:
+				theatre = shows[i].theatre
+				show_list.append(show_by_theatre)
+				show_by_theatre = []
+			show_by_theatre.append(shows[i])
+
+		show_list.append(show_by_theatre)
+
 	except Movie.DoesNotExist:
 		raise Http404("Page does not exist")
 	return render(request, 'movie/movie_details.html', 
