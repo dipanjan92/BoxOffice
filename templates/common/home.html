@@ -6,41 +6,30 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
         <li data-target="#myCarousel" data-slide-to="2" class=""></li>
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item">
-          <img class="first-slide" src="" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Some Text</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Button 1</a></p>
-            </div>
-          </div>
-        </div>
+      {% for top in top_movie %}
+        {% if forloop.counter == 1 %}
         <div class="item active">
-          <img class="second-slide" src="" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Some Text</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Button 2</a></p>
-            </div>
-          </div>
-        </div>
+        {% else %}
         <div class="item">
-          <img class="third-slide" src="" alt="Third slide">
+        {% endif %}
+          <img class="carousel-img" src="{{ MEDIA_URL }}/media/{{ top.image }}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Yet another heading</h1>
-              <p>Some Text</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Button 3</a></p>
+              <h1>{{ top.name }}</h1>
+              <p>{{ top.cast }}</p>
+              <p>
+                <a class="btn btn-lg btn-primary" onclick="watchTrailer('{{ top.name }}','{{ top.trailer }}')" role="button">Watch Trailer</a>
+                <a class="btn btn-lg btn-primary" href="{% url 'movie_details' top.id %}" role="button">Book Now</a>
+              </p>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -62,10 +51,10 @@
           <div class="thumbnail">
             <img src="{{ MEDIA_URL }}/media/{{ movie.image }}" alt="{{ movie.name }}">
             <div class="caption">
-              <h3>{{ movie.name }}</h3>
+              <h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>
               <p>{{ movie.cast }}</p>
               <p>{{ movie.language }} | {{ movie.certificate }}</p>
-              <p><a href="#" class="btn btn-default" role="button">Watch Trailer</a> <a href="#" class="btn btn-primary" role="button">Book Now</a></p>
+              <p><a class="btn btn-default" onclick="watchTrailer('{{ movie.name }}','{{ movie.trailer }}')" role="button">Watch Trailer</a> <a class="btn btn-primary" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>
             </div>
           </div>
         </div>
@@ -79,7 +68,7 @@
     </div>
     <script type="text/javascript">
     	$('.carousel').carousel({
-  			interval: 5000
+  			interval: 2500
 		});
     </script>
 {% endblock %}

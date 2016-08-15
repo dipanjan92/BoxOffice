@@ -25,6 +25,18 @@ $( function() {
     });
 });
 
+function watchTrailer(name,url){
+	html = '<iframe width="1165" height="545" src="'+url+'" frameborder="0" allowfullscreen></iframe>';
+	$('<div />').html(html).dialog({
+      resizable: false,
+      height: 600,
+      title: name,
+      width: 1200,
+      modal: true,
+  	  close: function(){$(this).remove()}
+  	});
+}
+
 function createSeatArray() {
 	var seats_per_row = 15;
 	var seats = {'Platinum':2, 'Gold':2, 'Silver':6};

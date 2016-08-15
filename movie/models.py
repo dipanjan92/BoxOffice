@@ -4,14 +4,14 @@ from django.db import models
 
 class Movie(models.Model):
     lang_choice = (
-        ('EN', 'English'),
-        ('BN', 'Bengali'),
-        ('HI', 'Hindi'),
-        ('TA', 'Tamil'),
-        ('TE', 'Telugu'),
-        ('ML', 'Malayalam'),
-        ('MR', 'Marathi'),
-        ('FR', 'French'),
+        ('ENGLISH', 'English'),
+        ('BENGALI', 'Bengali'),
+        ('HINDI', 'Hindi'),
+        ('TAMIL', 'Tamil'),
+        ('TELUGU', 'Telugu'),
+        ('MALAYALAM', 'Malayalam'),
+        ('MARATHI', 'Marathi'),
+        ('FRENCH', 'French'),
     )
     rating_choice = (
         ('U', 'U'),
@@ -22,9 +22,10 @@ class Movie(models.Model):
     name = models.CharField(max_length=20)
     cast = models.CharField(max_length=100)
     director = models.CharField(max_length=20)
-    language = models.CharField(max_length=2, choices=lang_choice)
+    language = models.CharField(max_length=10, choices=lang_choice)
     run_length = models.IntegerField(help_text="Enter run length in minutes")
     certificate = models.CharField(max_length=2, choices=rating_choice)
+    popularity_index = models.IntegerField(unique=True, null=True, blank=True)
     trailer = models.URLField(blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='media')
 

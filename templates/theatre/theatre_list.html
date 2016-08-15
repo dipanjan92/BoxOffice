@@ -6,10 +6,18 @@
 
 {% block content %}
 
-	<ul>
-		{% for theatre in theatres %}
-			<li><a href="{% url 'theatre_details' theatre.id %}">{{ theatre }}</a></li>
-		{% endfor %}
-	</ul>
+	
+	{% for category in theatres %}
+	<div class="jumbotron" id="{{ category.0.city }}-theatres">
+	    <div class="text-center">
+	    	<h2>Theatres in {{ category.0.city }}</h2>
+	    </div>
+	    <ul>
+		    {% for theatre in category %}
+			<li><a href="{% url 'theatre_details' theatre.id %}">{{ theatre.name }} | {{ theatre.address }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endfor %}
 
 {% endblock %}

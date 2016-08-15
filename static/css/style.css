@@ -43,6 +43,33 @@ div.selected{
 	width:350px!important; 
 }
 
+.carousel-img {
+	min-height:80vh; 
+	height:80vh!important;
+	width:100vw!important; 	
+}
+
+div#myCarousel {
+	height:70vh;
+	width:80vw;
+	margin-left:10vw;
+	margin-right:10vw;
+	margin-bottom:12vh;
+}
+
+ol.carousel-indicators {
+	top:75vh!important;
+}
+
+div.carousel-caption {
+	background-color: rgba(0,0,0,0.4);
+}
+
+.media-left img {
+	width:120px!important;
+	height:120px!important;
+}
+
 /*END: override bootsrtap styles*/
 
 .forms{
