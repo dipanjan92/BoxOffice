@@ -80,7 +80,9 @@ $(document).ready(function(){
 
 	//show available seats of particular type
 	$('#id_seat_type').change(function(){
-		$('.selectable').removeClass('selectable');
+		seat_dict = {};
+		$('#selected_seat').attr('value','');
+		$('.selectable').removeClass('selectable selected');
         var selector = $(this).val();
         $('table.'+selector+' td div').addClass('selectable');
     });

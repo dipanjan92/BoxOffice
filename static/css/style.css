@@ -1,9 +1,15 @@
 div.Platinum, div.Gold, div.Silver{
-	height: 2em;
-	width: 2em;
-	background-color: grey;
-	border: 1px solid black;
-	margin: 2px;
+	width: 2.5em;
+	border-top: 5px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	margin: 5px;
+	text-align: center;
+}
+
+div.Platinum a, div.Gold a, div.Silver a{
+	color: black;
+	text-decoration: none;
 }
 
 div.seatDiv{
@@ -19,11 +25,25 @@ div.seatForm{
 }
 
 div.selectable{
-	background-color: green!important;
+	border-top: 5px solid green!important;
+	border-left: 2px solid green!important;
+	border-right: 2px solid green!important;
+}
+
+div.selectable a{
+	color: green!important;
+	cursor: pointer!important;
 }
 
 div.selected{
-	background-color: blue!important;
+	border-top: 3px solid blue!important;
+	border-left: 1px solid blue!important;
+	border-right: 1px solid blue!important;
+}
+
+div.selected a{
+	color: blue!important;
+	cursor: pointer!important;
 }
 
 /*START: override bootsrtap styles*/
